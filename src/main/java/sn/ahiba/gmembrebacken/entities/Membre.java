@@ -1,4 +1,4 @@
-package sn.ahiba.entities;
+package sn.ahiba.gmembrebacken.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

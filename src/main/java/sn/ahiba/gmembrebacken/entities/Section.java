@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class Section {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nom;
     private String adresse;
     private String telephone;
@@ -15,14 +15,14 @@ public class Section {
     public Section() {
     }
 
-    public Section(int id, String nom, String adresse, String telephone) {
+    public Section(long id, String nom, String adresse, String telephone) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

@@ -1,15 +1,12 @@
 package sn.ahiba.gmembrebacken.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Membre {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private long age;
     private String matricule;
     private String prenom;
@@ -18,8 +15,12 @@ public class Membre {
     private String telephone;
     private String scolarite;
     private String adresse;
+    @OneToOne
+    private Dahira dahira;
+    @OneToOne
+    private Fonction fonction;
 
-    public Membre(int id, long age, String matricule, String prenom, String nom, String sexe, String telephone, String scolarite, String adresse) {
+    public Membre(Long id, long age, String matricule, String prenom, String nom, String sexe, String telephone, String scolarite, String adresse) {
         this.id = id;
         this.age = age;
         this.matricule = matricule;
@@ -35,11 +36,11 @@ public class Membre {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -105,5 +106,21 @@ public class Membre {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public Dahira getDahira() {
+        return dahira;
+    }
+
+    public void setDahira(Dahira dahira) {
+        this.dahira = dahira;
+    }
+
+    public Fonction getFonction() {
+        return fonction;
+    }
+
+    public void setFonction(Fonction fonction) {
+        this.fonction = fonction;
     }
 }

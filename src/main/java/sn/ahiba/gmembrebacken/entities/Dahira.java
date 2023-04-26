@@ -6,24 +6,24 @@ import jakarta.persistence.*;
 public class Dahira {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     private String nom;
     private String adresse;
     private String telephone;
-    @ManyToOne
-    private Membre membre;
+    @OneToOne
+    private Section section;
 
     public Dahira() {
     }
 
-    public Dahira(int id, String nom, String adresse, String telephone) {
+    public Dahira(long id, String nom, String adresse, String telephone) {
         this.id = id;
         this.nom = nom;
         this.adresse = adresse;
         this.telephone = telephone;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -55,11 +55,11 @@ public class Dahira {
         this.telephone = telephone;
     }
 
-    public Membre getMembre() {
-        return membre;
+    public Section getSection() {
+        return section;
     }
 
-    public void setMembre(Membre membre) {
-        this.membre = membre;
+    public void setSection(Section section) {
+        this.section = section;
     }
 }

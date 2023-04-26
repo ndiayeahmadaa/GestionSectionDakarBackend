@@ -5,11 +5,11 @@ import jakarta.persistence.*;
 @Entity
 public class Fonction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;
+    private  long id;
     private  String nom;
     @OneToOne
     private Membre membre;
-    public Fonction(int id, String nom) {
+    public Fonction(long id, String nom) {
         this.id = id;
         this.nom = nom;
     }
@@ -18,7 +18,7 @@ public class Fonction {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

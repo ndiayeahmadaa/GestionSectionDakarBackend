@@ -4,26 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.ahiba.gmembrebacken.entities.Membre;
-import sn.ahiba.gmembrebacken.services.ImembreService;
-import sn.ahiba.gmembrebacken.serviveImp.MembreServiceImp;
-
-import java.util.List;
-
+import sn.ahiba.gmembrebacken.services.IMembreService;
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/membres")
 public class MembreController {
 
     @Autowired
-    private ImembreService imembreService;
+    private IMembreService imembreService;
 
-   @GetMapping("/liste")
-    public List<Membre> membres(){
-       return imembreService.findAllMembres();
+   @GetMapping("")
+    public ResponseEntity<?> membres(){
+       return ResponseEntity.ok().body(imembreService.findAll());
    }
-   @PostMapping("/save")
-    public ResponseEntity<Membre> createMembre(@RequestBody Membre membre){
-       return ResponseEntity.ok().body(imembreService.saveMembres(membre));
+   @PostMapping("")
+    public ResponseEntity<?> createMembre(@RequestBody Membre membre){
+       return ResponseEntity.ok().body(imembreService.save(membre).get());
    }
 
 }

@@ -13,33 +13,29 @@ import java.util.Optional;
 public class SectionServiceImp implements ISectionService {
     @Autowired
     private SectionRepository sectionRepository;
+
     @Override
-    public Optional<Section> save(Section section) {
+    public Optional<?> save(Section section) {
         return Optional.of(sectionRepository.save(section));
     }
 
     @Override
-    public Optional<Section> update(Section section) {
+    public Optional<?> update(Section section) {
         return Optional.of(sectionRepository.save(section));
     }
 
     @Override
-    public void deleteByCode(Long id) {
-        sectionRepository.deleteById(id);
+    public Optional<?> getById(Section section) {
+        return sectionRepository.findById(section.getId());
     }
 
     @Override
-    public Optional<Section> getById(Long id) {
-        return sectionRepository.findById(id);
+    public void deleteByCode(long id) {
+     sectionRepository.deleteById(id);
     }
 
     @Override
-    public Optional<Section> getByNom(String nom) {
-        return sectionRepository.findByNom(nom);
-    }
-
-    @Override
-    public List<Section> fingAll() {
+    public List<?> findAll() {
         return sectionRepository.findAll();
     }
 }

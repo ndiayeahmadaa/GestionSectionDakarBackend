@@ -15,12 +15,15 @@ public class Membre {
     private String telephone;
     private String scolarite;
     private String adresse;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( name="DAHIRACODE", referencedColumnName = "DAHIRACODE", nullable = false)
     private Dahira dahira;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( name="FONCTIONCODE", referencedColumnName = "FONCTIONCODE", nullable = false)
     private Fonction fonction;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn( name="SECTIONCODE", referencedColumnName = "SECTIONCODE", nullable = false)
     private Section section;
 
     public Membre(Long id, long age, String matricule, String prenom, String nom, String sexe, String telephone, String scolarite, String adresse) {

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SectionServiceImp implements ISectionService {
+public class SectionServiceImp implements ISectionService  {
     @Autowired
     private SectionRepository sectionRepository;
 

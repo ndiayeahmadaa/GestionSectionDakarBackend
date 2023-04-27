@@ -17,20 +17,7 @@ public class MembreServiceImp implements IMembreService {
     @Autowired
     private MembreRepository membreRepository;
 
-    @Override
-    public Optional<Membre> save(Membre membre) {
-        return Optional.of(membreRepository.save(membre));
-    }
 
-    @Override
-    public Optional<Membre> update(Membre membre) {
-        return  Optional.of(membreRepository.save(membre));
-    }
-
-    @Override
-    public Optional<Membre> getById(long id) {
-        return membreRepository.findById(id);
-    }
 
     @Override
     public Optional<Membre> getByMatricule(String matricule) {
@@ -38,28 +25,55 @@ public class MembreServiceImp implements IMembreService {
     }
 
     @Override
+    public List<Membre> findByDahiraCode(String codeDahira) {
+        return membreRepository.findByDahiraCode(codeDahira);
+    }
+
+    @Override
+    public List<Membre> findByFonctionCode(String  codeFonction) {
+        return membreRepository.findByFonctionCode(codeFonction);
+    }
+
+    @Override
+    public List<Membre> findBySectionCode(String codeSection) {
+        return membreRepository.findBySectionCode(codeSection);
+    }
+
+    @Override
+    public List<Membre> findAll(String codeFonction, String codeSection) {
+        if (codeSection != null){
+            return membreRepository.findBySectionCode(codeSection);
+        } else if (codeFonction != null) {
+           return membreRepository.findByFonctionCode(codeFonction);
+        }
+       else {
+           return membreRepository.findAll();
+    }
+    }
+
+    @Override
+    public Optional<?> save(Membre membre) {
+        return Optional.of(membreRepository.save(membre));
+    }
+
+    @Override
+    public Optional<?> update(Membre membre) {
+        return Optional.of(membreRepository.save(membre));
+    }
+
+    @Override
+    public Optional<?> getById(Membre membre) {
+        return membreRepository.findById(membre.getId());
+    }
+
+    @Override
     public void deleteByCode(long id) {
-        membreRepository.deleteById(id);
+     membreRepository.deleteById(id);
     }
 
     @Override
-    public List<Membre> findAll() {
+    public List<?> findAll() {
         return membreRepository.findAll();
-    }
-
-    @Override
-    public List<Membre> findByDahira(Dahira dahira) {
-        return membreRepository.findByDahira(dahira);
-    }
-
-    @Override
-    public List<Membre> findByFonction(Fonction fonction) {
-        return membreRepository.findByFonction(fonction);
-    }
-
-    @Override
-    public List<Membre> findBySection(Section section) {
-        return membreRepository.findBySection(section);
     }
 }
 

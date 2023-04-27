@@ -7,6 +7,7 @@ public class Dahira {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "DAHIRACODE", nullable = false, unique = true)
     private String code;
     private String nom;
     private String adresse;

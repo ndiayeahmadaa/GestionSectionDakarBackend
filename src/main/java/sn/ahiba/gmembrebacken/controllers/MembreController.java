@@ -13,12 +13,12 @@ public class MembreController {
     @Autowired
     private IMembreService imembreService;
 
-   @GetMapping("")
-    public ResponseEntity<?> membres(){
+   @GetMapping()
+    public ResponseEntity<?> findAll(@RequestParam(value = "matricule",required = false) String matricule){
        return ResponseEntity.ok().body(imembreService.findAll());
    }
-   @PostMapping("")
-    public ResponseEntity<?> createMembre(@RequestBody Membre membre){
+   @PostMapping()
+    public ResponseEntity<?> create(@RequestBody Membre membre){
        return ResponseEntity.ok().body(imembreService.save(membre).get());
    }
 

@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface DahiraRepository extends JpaRepository<Dahira,Long> {
 
     public Optional<Dahira> findByCode(String code);
-    public Optional<Dahira> findBySection(Section section);
+    public Optional<Dahira> findBySectionCode(String codeSection);
 }

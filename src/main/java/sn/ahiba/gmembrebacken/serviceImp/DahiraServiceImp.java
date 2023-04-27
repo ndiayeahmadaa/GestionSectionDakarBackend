@@ -13,34 +13,34 @@ import java.util.Optional;
 public class DahiraServiceImp implements IDahiraService {
     @Autowired
     private DahiraRepository dahiraRepository;
+
     @Override
-    public Optional<Dahira> save(Dahira dahira) {
+    public Optional<?> save(Dahira dahira) {
         return Optional.of(dahiraRepository.save(dahira));
     }
 
     @Override
-    public Optional<Dahira> update(Dahira dahira) {
+    public Optional<?> update(Dahira dahira) {
         return Optional.of(dahiraRepository.save(dahira));
     }
 
     @Override
-    public Optional<Dahira> getById(Long id) {
-        return dahiraRepository.findById(id);
+    public Optional<?> getById(Dahira dahira) {
+        return dahiraRepository.findById(dahira.getId());
+    }
+
+    @Override
+    public void deleteByCode(long id) {
+      dahiraRepository.deleteById(id);
+    }
+
+    @Override
+    public List<?> findAll() {
+        return dahiraRepository.findAll();
     }
 
     @Override
     public Optional<Dahira> getByCode(String code) {
         return dahiraRepository.findByCode(code);
-    }
-
-    @Override
-    public void deleteByCode(long id) {
-        dahiraRepository.deleteById(id);
-    }
-
-
-    @Override
-    public List<Dahira> findAll() {
-        return dahiraRepository.findAll();
     }
 }

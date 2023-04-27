@@ -7,7 +7,7 @@ public class Fonction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long id;
     private  String nom;
-
+    @Column(name = "FONCTIONCODE", nullable = false, unique = true)
     private String code;
     @OneToOne
     private Membre membre;

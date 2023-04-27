@@ -14,7 +14,9 @@ import sn.ahiba.gmembrebacken.entities.Section;
 @Repository
 public interface MembreRepository extends JpaRepository<Membre,Long> {
     public Optional<Membre> findByMatricule(String matricule);
-    public List<Membre> findByFonction(Fonction fonction);
-    public List<Membre> findByDahira(Dahira dahira);
-    public List<Membre> findBySection(Section section);
+    public List<Membre> findByFonctionCode(String codeFonction);
+    public List<Membre> findByDahiraCode(String codeDahira);
+    public List<Membre> findBySectionCode(String codeSection);
+
+
 }

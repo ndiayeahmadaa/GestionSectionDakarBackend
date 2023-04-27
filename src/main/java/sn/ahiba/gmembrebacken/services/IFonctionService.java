@@ -1,15 +1,12 @@
 package sn.ahiba.gmembrebacken.services;
 
+import sn.ahiba.gmembrebacken.crud.IServiceCRUD;
 import sn.ahiba.gmembrebacken.entities.Fonction;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface IFonctionService {
-    public Optional<Fonction> save(Fonction fonction);
-    public Optional<Fonction> update(Fonction fonction);
-    public Optional<Fonction> getById(Long id);
-    public void deleteByCode(long id);
-    public List<Fonction> findAll();
+public interface IFonctionService extends IServiceCRUD<Fonction,Long> {
+
     public Optional<Fonction> getByNom(String nom);
 }

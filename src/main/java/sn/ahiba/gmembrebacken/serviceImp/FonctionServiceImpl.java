@@ -12,33 +12,35 @@ import java.util.Optional;
 public class FonctionServiceImpl implements IFonctionService {
     @Autowired
     private FonctionRepository fonctionRepository;
-    @Override
-    public Optional<Fonction> save(Fonction fonction) {
-        return Optional.of(fonctionRepository.save(fonction));
-    }
 
-    @Override
-    public Optional<Fonction> update(Fonction fonction) {
-        return Optional.of(fonctionRepository.save(fonction));
-    }
-
-    @Override
-    public Optional<Fonction> getById(Long id) {
-        return fonctionRepository.findById(id);
-    }
-
-    @Override
-    public void deleteByCode(long id) {
-         fonctionRepository.deleteById(id);
-    }
-
-    @Override
-    public List<Fonction> findAll() {
-        return fonctionRepository.findAll();
-    }
 
     @Override
     public Optional<Fonction> getByNom(String nom) {
         return fonctionRepository.findByNom(nom);
+    }
+
+    @Override
+    public Optional<?> save(Fonction fonction) {
+        return Optional.of(fonctionRepository.save(fonction));
+    }
+
+    @Override
+    public Optional<?> update(Fonction fonction) {
+        return Optional.of(fonctionRepository.save(fonction));
+    }
+
+    @Override
+    public Optional<?> getById(Fonction fonction) {
+        return fonctionRepository.findById(fonction.getId());
+    }
+
+    @Override
+    public void deleteByCode(long id) {
+      fonctionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<?> findAll() {
+        return fonctionRepository.findAll();
     }
 }

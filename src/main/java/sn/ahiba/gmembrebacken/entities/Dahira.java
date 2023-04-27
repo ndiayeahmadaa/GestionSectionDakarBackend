@@ -10,7 +10,8 @@ public class Dahira {
     private String nom;
     private String adresse;
     private String telephone;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn( name="SECTIONCODE", referencedColumnName = "SECTIONCODE", nullable = false)
     private Section section;
 
     public Dahira() {

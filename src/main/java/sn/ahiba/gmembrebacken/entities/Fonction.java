@@ -7,6 +7,8 @@ public class Fonction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long id;
     private  String nom;
+
+    private String code;
     @OneToOne
     private Membre membre;
     public Fonction(long id, String nom) {
@@ -22,8 +24,25 @@ public class Fonction {
         return id;
     }
 
-    public void setId(int id) {
+
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public Membre getMembre() {
+        return membre;
+    }
+
+    public void setMembre(Membre membre) {
+        this.membre = membre;
     }
 
     public String getNom() {

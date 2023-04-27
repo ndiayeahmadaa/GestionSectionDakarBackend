@@ -7,6 +7,7 @@ public class Dahira {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    private String code;
     private String nom;
     private String adresse;
     private String telephone;
@@ -26,10 +27,6 @@ public class Dahira {
 
     public long getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getNom() {
@@ -56,6 +53,18 @@ public class Dahira {
         this.telephone = telephone;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public Section getSection() {
         return section;
     }
@@ -63,4 +72,6 @@ public class Dahira {
     public void setSection(Section section) {
         this.section = section;
     }
+
+
 }

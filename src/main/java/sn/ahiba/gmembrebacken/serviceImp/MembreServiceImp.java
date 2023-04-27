@@ -1,8 +1,11 @@
-package sn.ahiba.gmembrebacken.serviveImp;
+package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sn.ahiba.gmembrebacken.entities.Dahira;
+import sn.ahiba.gmembrebacken.entities.Fonction;
 import sn.ahiba.gmembrebacken.entities.Membre;
+import sn.ahiba.gmembrebacken.entities.Section;
 import sn.ahiba.gmembrebacken.repositories.MembreRepository;
 import sn.ahiba.gmembrebacken.services.IMembreService;
 
@@ -42,6 +45,21 @@ public class MembreServiceImp implements IMembreService {
     @Override
     public List<Membre> findAll() {
         return membreRepository.findAll();
+    }
+
+    @Override
+    public List<Membre> findByDahira(Dahira dahira) {
+        return membreRepository.findByDahira(dahira);
+    }
+
+    @Override
+    public List<Membre> findByFonction(Fonction fonction) {
+        return membreRepository.findByFonction(fonction);
+    }
+
+    @Override
+    public List<Membre> findBySection(Section section) {
+        return membreRepository.findBySection(section);
     }
 }
 

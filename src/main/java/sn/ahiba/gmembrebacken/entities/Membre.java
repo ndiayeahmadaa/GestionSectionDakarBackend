@@ -20,6 +20,9 @@ public class Membre {
     @OneToOne
     private Fonction fonction;
 
+    @OneToOne
+    private Section section;
+
     public Membre(Long id, long age, String matricule, String prenom, String nom, String sexe, String telephone, String scolarite, String adresse) {
         this.id = id;
         this.age = age;
@@ -122,5 +125,13 @@ public class Membre {
 
     public void setFonction(Fonction fonction) {
         this.fonction = fonction;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
     }
 }

@@ -9,8 +9,7 @@ import sn.ahiba.gmembrebacken.services.IMembreService;
 @SpringBootApplication
 public class GMembreBackenApplication implements CommandLineRunner {
 
-    @Autowired
-    IMembreService imembreService;
+
     public static void main(String[] args) {
         SpringApplication.run(GMembreBackenApplication.class, args);
     }

@@ -9,8 +9,6 @@ public class Fonction {
     private  String nom;
     @Column(name = "FONCTIONCODE", nullable = false, unique = true)
     private String code;
-    @OneToOne
-    private Membre membre;
     public Fonction(long id, String nom) {
         this.id = id;
         this.nom = nom;
@@ -35,14 +33,6 @@ public class Fonction {
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public Membre getMembre() {
-        return membre;
-    }
-
-    public void setMembre(Membre membre) {
-        this.membre = membre;
     }
 
     public String getNom() {

@@ -1,34 +1,41 @@
 package sn.ahiba.gmembrebacken.configuration;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
-import springfox.documentation.builders.ApiInfoBuilder;
-import springfox.documentation.builders.PathSelectors;
-import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.Contact;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-@Profile("swagger")
+
+import java.util.List;
+
 @Configuration
-@EnableSwagger2
 public class SwaggerDocumentationConfig {
 
+    @Value("${ahiba.openapi.url}")
+    private String url;
     @Bean
-    public Docket apiDocket() {
+    public OpenAPI myOpenAPI() {
+        Server server = new Server();
+        server.setUrl(url);
+        server.setDescription("Server URL");
 
-        Docket docket = new Docket(DocumentationType.SWAGGER_2);
-        docket.select().apis(RequestHandlerSelectors.basePackage("sn.ahiba.gmembrebacken.controllers")).paths(PathSelectors.any())
-                .build().apiInfo(apiEndPointsInfo());
+        Contact contact = new Contact();
+        contact.setEmail("sectiondakar.gmail.com");
+        contact.setName("Section Dakar");
+        contact.setUrl("https://www.sectiondakar.sn");
 
-        return docket;
+        License maLicence = new License().name("Apache License").url("http://www.apache.org/licenses/LICENSE-2.0.html");
 
-    }
+        Info info = new Info().
+                title("Section Dakar Management API")
+                .version("1.0")
+                .contact(contact)
+                .description("Cet API expose endpoints pour manager section dakar")
+                .license(maLicence);
 
-    private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Gestion Membre Dahira").description("").title("Documentation API Gestion Membre Dahira")
-                .contact(new Contact("Equipe dev", "www.portdakar.sn", "dsi@portdakar.sn")).license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html").version("1.0.0").build();
-    }
+        return new OpenAPI().info(info).servers(List.of(server));
+
+}
 }

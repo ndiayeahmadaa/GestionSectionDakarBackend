@@ -62,9 +62,10 @@ public class MembreServiceImp implements IMembreService {
     }
 
     @Override
-    public Optional<?> getById(Membre membre) {
-        return membreRepository.findById(membre.getId());
+    public Optional<?> getById(Long id) {
+        return  membreRepository.findById(id);
     }
+
 
     @Override
     public void deleteByCode(long id) {

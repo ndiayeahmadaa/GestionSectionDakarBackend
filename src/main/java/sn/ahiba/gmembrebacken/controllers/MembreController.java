@@ -21,5 +21,13 @@ public class MembreController {
     public ResponseEntity<?> create(@RequestBody Membre membre){
        return ResponseEntity.ok().body(imembreService.save(membre).get());
    }
+   @PutMapping
+    public ResponseEntity<?> update(@RequestBody Membre membre){
+       return ResponseEntity.ok().body(imembreService.update(membre));
+   }
 
+   @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id){
+       return ResponseEntity.ok().body(imembreService.getById(id));
+   }
 }

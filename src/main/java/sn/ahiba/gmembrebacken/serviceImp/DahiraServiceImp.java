@@ -25,8 +25,8 @@ public class DahiraServiceImp implements IDahiraService {
     }
 
     @Override
-    public Optional<?> getById(Dahira dahira) {
-        return dahiraRepository.findById(dahira.getId());
+    public Optional<?> getById(Long id) {
+        return dahiraRepository.findById(id);
     }
 
     @Override

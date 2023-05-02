@@ -25,9 +25,10 @@ public class SectionServiceImp implements ISectionService  {
     }
 
     @Override
-    public Optional<?> getById(Section section) {
-        return sectionRepository.findById(section.getId());
+    public Optional<?> getById(Long id) {
+        return sectionRepository.findById(id);
     }
+
 
     @Override
     public void deleteByCode(long id) {

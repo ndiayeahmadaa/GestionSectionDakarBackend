@@ -30,9 +30,10 @@ public class FonctionServiceImpl implements IFonctionService {
     }
 
     @Override
-    public Optional<?> getById(Fonction fonction) {
-        return fonctionRepository.findById(fonction.getId());
+    public Optional<?> getById(Long id) {
+        return fonctionRepository.findById(id);
     }
+
 
     @Override
     public void deleteByCode(long id) {

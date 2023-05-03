@@ -1,4 +1,4 @@
-package sn.ahiba.gmembrebacken.controllers;
+package sn.ahiba.gmembrebacken.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -6,12 +6,12 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sn.ahiba.gmembrebacken.entities.Membre;
+import sn.ahiba.gmembrebacken.exception.BusinessResourceException;
 import sn.ahiba.gmembrebacken.services.IMembreService;
-
-import java.util.List;
 
 @CrossOrigin("*")
 @RestController
@@ -35,7 +35,12 @@ public class MembreController {
 
    @PostMapping()
     public ResponseEntity<?> create(@RequestBody Membre membre){
-       return ResponseEntity.ok().body(imembreService.save(membre).get());
+
+        if (membre != null && membre.getMatricule() == null  || membre.getId() <=0){
+            return ResponseEntity.ok().body(imembreService.save(membre).get());
+        }
+
+       throw new BusinessResourceException("Le champ matricule est requis", HttpStatus.NOT_ACCEPTABLE);
    }
    @PutMapping
     public ResponseEntity<?> update(@RequestBody Membre membre){
@@ -46,5 +51,12 @@ public class MembreController {
    @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id){
        return ResponseEntity.ok().body(imembreService.getById(id));
+   }
+   @DeleteMapping
+    public ResponseEntity<?> deleteByCode(@RequestParam(value = "code") String code,@RequestParam(value = "logical",defaultValue = "false") boolean logical){
+        if (code != null && !code.isEmpty()){
+            return imembreService.deleteByCode(code);
+        }
+       throw new BusinessResourceException("Le champ matricule est requis", HttpStatus.BAD_REQUEST);
    }
 }

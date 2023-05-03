@@ -8,6 +8,7 @@ public class Membre {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private long age;
+    @Column(name = "MATRICULE", nullable = false, unique = true)
     private String matricule;
     private String prenom;
     private String nom;

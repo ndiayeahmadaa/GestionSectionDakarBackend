@@ -1,6 +1,7 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sn.ahiba.gmembrebacken.entities.Dahira;
 import sn.ahiba.gmembrebacken.entities.Fonction;
@@ -68,8 +69,9 @@ public class MembreServiceImp implements IMembreService {
 
 
     @Override
-    public void deleteByCode(long id) {
-     membreRepository.deleteById(id);
+    public ResponseEntity<?> deleteByCode(String code) {
+     return membreRepository.deleteByMatricule(code);
+
     }
 
     @Override

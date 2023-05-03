@@ -1,6 +1,7 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sn.ahiba.gmembrebacken.entities.Section;
 import sn.ahiba.gmembrebacken.repositories.SectionRepository;
@@ -31,8 +32,8 @@ public class SectionServiceImp implements ISectionService  {
 
 
     @Override
-    public void deleteByCode(long id) {
-     sectionRepository.deleteById(id);
+    public ResponseEntity<?> deleteByCode(String code) {
+     return sectionRepository.deleteByCode(code);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sn.ahiba.gmembrebacken.entities.Fonction;
 import sn.ahiba.gmembrebacken.repositories.FonctionRepository;
@@ -9,15 +8,15 @@ import sn.ahiba.gmembrebacken.services.IFonctionService;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class FonctionServiceImpl implements IFonctionService {
     @Autowired
     private FonctionRepository fonctionRepository;
 
-
     @Override
-    public Optional<Fonction> getByNom(String nom) {
-        return fonctionRepository.findByNom(nom);
+    public Optional<Fonction> getByCode(String nom) {
+        return fonctionRepository.findByCode(nom);
     }
 
     @Override
@@ -36,11 +35,17 @@ public class FonctionServiceImpl implements IFonctionService {
     }
 
     @Override
-    public ResponseEntity<?> deleteByCode(String code) {
-        return fonctionRepository.deleteByCode(code);
+    public boolean deleteByCode(String code) {
+        boolean isDeleted = false;
+        Optional<Fonction> fonctionToDelete = fonctionRepository.findByCode(code);
+
+        if (fonctionToDelete.isPresent()) {
+            fonctionRepository.delete(fonctionToDelete.get());
+            isDeleted = true;
+        }
+
+        return isDeleted;
     }
-
-
 
     @Override
     public List<?> findAll() {

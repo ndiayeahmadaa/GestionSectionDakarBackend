@@ -10,10 +10,15 @@ import sn.ahiba.gmembrebacken.entities.Membre;
 
 @Repository
 public interface MembreRepository extends JpaRepository<Membre,Long> {
+    
     public Optional<Membre> findByMatricule(String matricule);
+
     public List<Membre> findByFonctionCode(String codeFonction);
+
     public List<Membre> findByDahiraCode(String codeDahira);
+
     public List<Membre> findBySectionCode(String codeSection);
+
     public ResponseEntity<?> deleteByMatricule(String matricule);
 
 

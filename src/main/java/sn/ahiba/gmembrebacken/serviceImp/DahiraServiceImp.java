@@ -1,7 +1,6 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sn.ahiba.gmembrebacken.entities.Dahira;
 import sn.ahiba.gmembrebacken.repositories.DahiraRepository;
@@ -12,6 +11,7 @@ import java.util.Optional;
 
 @Service
 public class DahiraServiceImp implements IDahiraService {
+
     @Autowired
     private DahiraRepository dahiraRepository;
 
@@ -31,8 +31,16 @@ public class DahiraServiceImp implements IDahiraService {
     }
 
     @Override
-    public ResponseEntity<?> deleteByCode(String code) {
-     return dahiraRepository.deleteByCode(code);
+    public boolean deleteByCode(String code) {
+        boolean isDeleted = false;
+        Optional<Dahira> dahiraToDelete = dahiraRepository.findByCode(code);
+
+        if (dahiraToDelete.isPresent()) {
+            dahiraRepository.delete(dahiraToDelete.get());
+            isDeleted = true;
+        }
+
+        return isDeleted;
     }
 
     @Override

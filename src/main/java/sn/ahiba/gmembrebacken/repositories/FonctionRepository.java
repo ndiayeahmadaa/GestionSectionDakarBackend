@@ -10,7 +10,8 @@ import java.util.Optional;
 @Repository
 public interface FonctionRepository extends JpaRepository<Fonction,Long> {
 
-    public Optional<Fonction> findByNom(String nom);
+    public Optional<Fonction> findByCode(String code);
+    
     public ResponseEntity<?> deleteByCode(String code);
 
 }

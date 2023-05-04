@@ -1,7 +1,6 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import sn.ahiba.gmembrebacken.entities.Section;
 import sn.ahiba.gmembrebacken.repositories.SectionRepository;
@@ -11,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SectionServiceImp implements ISectionService  {
+public class SectionServiceImp implements ISectionService {
     @Autowired
     private SectionRepository sectionRepository;
 
@@ -30,10 +29,22 @@ public class SectionServiceImp implements ISectionService  {
         return sectionRepository.findById(id);
     }
 
+    @Override
+    public Optional<Section> getByCode(String matricule) {
+        return sectionRepository.findByCode(matricule);
+    }
 
     @Override
-    public ResponseEntity<?> deleteByCode(String code) {
-     return sectionRepository.deleteByCode(code);
+    public boolean deleteByCode(String code) {
+        boolean isDeleted = false;
+        Optional<Section> sectionToDelete = sectionRepository.findByCode(code);
+
+        if (sectionToDelete.isPresent()) {
+            sectionRepository.delete(sectionToDelete.get());
+            isDeleted = true;
+        }
+
+        return isDeleted;
     }
 
     @Override

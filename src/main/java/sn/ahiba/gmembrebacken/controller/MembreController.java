@@ -23,37 +23,40 @@ public class MembreController {
 
     @Operation(summary = "membres", tags = { "membres", "get", "filter" })
     @ApiResponses({
-            @ApiResponse(responseCode = "200", content = {
+            @ApiResponse(responseCode = "201", content = {
                     @Content(schema = @Schema(implementation = Membre.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "204", description = "Il y a pas de mebres trouvés", content = {
                     @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
-   @GetMapping()
-    public ResponseEntity<?> findAll(@RequestParam(value = "matricule",required = false) String matricule){
-       return ResponseEntity.ok().body(imembreService.findAll());
-   }
+    @GetMapping()
+    public ResponseEntity<?> findAll(@RequestParam(value = "matricule", required = false) String matricule) {
+        return ResponseEntity.ok().body(imembreService.findAll());
+    }
 
-   @PostMapping()
-    public ResponseEntity<?> create(@RequestBody Membre membre){
+    @PostMapping()
+    public ResponseEntity<?> create(@RequestBody Membre membre) {
 
-            return ResponseEntity.ok().body(imembreService.save(membre).get());
+        return new ResponseEntity<>(imembreService.save(membre).get(), HttpStatus.CREATED);
+    }
 
-   }
-   @PutMapping
-    public ResponseEntity<?> update(@RequestBody Membre membre){
-       return ResponseEntity.ok().body(imembreService.update(membre));
-   }
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody Membre membre) {
+        return ResponseEntity.ok().body(imembreService.update(membre));
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> findById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(imembreService.getById(id));
+    }
 
-   @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable Long id){
-       return ResponseEntity.ok().body(imembreService.getById(id));
-   }
-   @DeleteMapping
-    public ResponseEntity<?> deleteByCode(@RequestParam(value = "code") String code,@RequestParam(value = "logical",defaultValue = "false") boolean logical){
-        if (code != null && !code.isEmpty()){
-            return imembreService.deleteByCode(code);
+    @DeleteMapping
+    public ResponseEntity<?> deleteByCode(@RequestParam(value = "code") String code,
+            @RequestParam(value = "logical", defaultValue = "false") boolean logical) {
+        if (code != null && !code.isEmpty()) {
+
+            boolean isDeleted = imembreService.deleteByCode(code);
+            return isDeleted ? new ResponseEntity<>(HttpStatus.NO_CONTENT) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-       throw new BusinessResourceException("Le champ matricule est requis", HttpStatus.BAD_REQUEST);
-   }
+        throw new BusinessResourceException("Le champ matricule est requis", HttpStatus.BAD_REQUEST);
+    }
 }

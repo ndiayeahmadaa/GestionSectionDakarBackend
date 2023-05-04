@@ -1,12 +1,8 @@
 package sn.ahiba.gmembrebacken.serviceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import sn.ahiba.gmembrebacken.entities.Dahira;
-import sn.ahiba.gmembrebacken.entities.Fonction;
 import sn.ahiba.gmembrebacken.entities.Membre;
-import sn.ahiba.gmembrebacken.entities.Section;
 import sn.ahiba.gmembrebacken.repositories.MembreRepository;
 import sn.ahiba.gmembrebacken.services.IMembreService;
 
@@ -18,20 +14,13 @@ public class MembreServiceImp implements IMembreService {
     @Autowired
     private MembreRepository membreRepository;
 
-
-
-    @Override
-    public Optional<Membre> getByMatricule(String matricule) {
-        return membreRepository.findByMatricule(matricule);
-    }
-
     @Override
     public List<Membre> findByDahiraCode(String codeDahira) {
         return membreRepository.findByDahiraCode(codeDahira);
     }
 
     @Override
-    public List<Membre> findByFonctionCode(String  codeFonction) {
+    public List<Membre> findByFonctionCode(String codeFonction) {
         return membreRepository.findByFonctionCode(codeFonction);
     }
 
@@ -42,14 +31,14 @@ public class MembreServiceImp implements IMembreService {
 
     @Override
     public List<Membre> findAll(String codeFonction, String codeSection) {
-        if (codeSection != null){
+
+        if (codeSection != null) {
             return membreRepository.findBySectionCode(codeSection);
         } else if (codeFonction != null) {
-           return membreRepository.findByFonctionCode(codeFonction);
+            return membreRepository.findByFonctionCode(codeFonction);
+        } else {
+            return membreRepository.findAll();
         }
-       else {
-           return membreRepository.findAll();
-    }
     }
 
     @Override
@@ -64,14 +53,25 @@ public class MembreServiceImp implements IMembreService {
 
     @Override
     public Optional<?> getById(Long id) {
-        return  membreRepository.findById(id);
+        return membreRepository.findById(id);
     }
 
+    @Override
+    public Optional<Membre> getByCode(String matricule) {
+        return membreRepository.findByMatricule(matricule);
+    }
 
     @Override
-    public ResponseEntity<?> deleteByCode(String code) {
-     return membreRepository.deleteByMatricule(code);
+    public boolean deleteByCode(String code) {
+        boolean isDeleted = false;
+        Optional<Membre> membreToDelete = membreRepository.findByMatricule(code);
 
+        if (membreToDelete.isPresent()) {
+            membreRepository.delete(membreToDelete.get());
+            isDeleted = true;
+        }
+
+        return isDeleted;
     }
 
     @Override
@@ -79,5 +79,3 @@ public class MembreServiceImp implements IMembreService {
         return membreRepository.findAll();
     }
 }
-
-

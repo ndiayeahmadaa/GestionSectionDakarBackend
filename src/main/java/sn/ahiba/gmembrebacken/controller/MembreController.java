@@ -36,11 +36,8 @@ public class MembreController {
    @PostMapping()
     public ResponseEntity<?> create(@RequestBody Membre membre){
 
-        if (membre != null && membre.getMatricule() == null  || membre.getId() <=0){
             return ResponseEntity.ok().body(imembreService.save(membre).get());
-        }
 
-       throw new BusinessResourceException("Le champ matricule est requis", HttpStatus.NOT_ACCEPTABLE);
    }
    @PutMapping
     public ResponseEntity<?> update(@RequestBody Membre membre){

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sn.ahiba.gmembrebacken.entities.Dahira;
 import sn.ahiba.gmembrebacken.entities.Fonction;
 import sn.ahiba.gmembrebacken.exception.BusinessResourceException;
 import sn.ahiba.gmembrebacken.services.IFonctionService;

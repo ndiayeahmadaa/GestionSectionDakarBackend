@@ -20,7 +20,6 @@ public class SectionController {
     public ResponseEntity<?> findAll(@RequestParam(value = "code", required = false) String code) {
         return ResponseEntity.ok().body(iSectionService.findAll());
     }
-
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody Section section) {
 
@@ -30,10 +29,12 @@ public class SectionController {
     public ResponseEntity<?> update(@RequestBody Section section) {
         return ResponseEntity.ok().body(iSectionService.update(section));
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable Long id) {
         return ResponseEntity.ok().body(iSectionService.getById(id));
     }
+
     @DeleteMapping
     public ResponseEntity<?> deleteByCode(@RequestParam(value = "code") String code,
                                           @RequestParam(value = "logical", defaultValue = "false") boolean logical) {

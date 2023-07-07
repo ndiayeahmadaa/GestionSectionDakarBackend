@@ -17,7 +17,7 @@ public interface MembreRepository extends JpaRepository<Membre,Long> {
 
     public List<Membre> findByDahiraCode(String codeDahira);
 
-    public List<Membre> findBySectionCode(String codeSection);
+  //  public List<Membre> findBySectionCode(String codeSection);
 
     public ResponseEntity<?> deleteByMatricule(String matricule);
 

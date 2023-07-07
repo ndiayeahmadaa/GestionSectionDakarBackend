@@ -11,8 +11,8 @@ public interface IMembreService extends IServiceCRUD<Membre, Long> {
 
     public List<Membre> findByFonctionCode(String codeFonction);
 
-    public List<Membre> findBySectionCode(String codeSection);
+   // public List<Membre> findBySectionCode(String codeSection);
 
-    public List<Membre> findAll(String codeFonction, String codeSection);
+    public List<Membre> findAll(String codeFonction);
 
 }

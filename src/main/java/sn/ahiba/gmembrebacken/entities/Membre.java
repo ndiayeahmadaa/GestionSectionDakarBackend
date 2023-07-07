@@ -23,9 +23,9 @@ public class Membre {
     @JoinColumn( name="FONCTIONCODE", referencedColumnName = "FONCTIONCODE", nullable = false)
     private Fonction fonction;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn( name="SECTIONCODE", referencedColumnName = "SECTIONCODE", nullable = false)
-    private Section section;
+   // @ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn( name="SECTIONCODE", referencedColumnName = "SECTIONCODE", nullable = true)
+    //private Section section;
 
     public Membre(Long id, long age, String matricule, String prenom, String nom, String sexe, String telephone, String scolarite, String adresse) {
         this.id = id;
@@ -131,11 +131,11 @@ public class Membre {
         this.fonction = fonction;
     }
 
-    public Section getSection() {
-        return section;
-    }
+   // public Section getSection() {
+     //   return section;
+   // }
 
-    public void setSection(Section section) {
-        this.section = section;
-    }
+   // public void setSection(Section section) {
+       // this.section = section;
+   // }
 }

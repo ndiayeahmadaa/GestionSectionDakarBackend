@@ -24,17 +24,14 @@ public class MembreServiceImp implements IMembreService {
         return membreRepository.findByFonctionCode(codeFonction);
     }
 
-    @Override
-    public List<Membre> findBySectionCode(String codeSection) {
-        return membreRepository.findBySectionCode(codeSection);
-    }
+    //@Override
+    //public List<Membre> findBySectionCode(String codeSection) {
+    //    return membreRepository.findBySectionCode(codeSection);
+    //}
 
     @Override
-    public List<Membre> findAll(String codeFonction, String codeSection) {
-
-        if (codeSection != null) {
-            return membreRepository.findBySectionCode(codeSection);
-        } else if (codeFonction != null) {
+    public List<Membre> findAll(String codeFonction) {
+         if (codeFonction != null) {
             return membreRepository.findByFonctionCode(codeFonction);
         } else {
             return membreRepository.findAll();

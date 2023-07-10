@@ -13,6 +13,6 @@ public interface IMembreService extends IServiceCRUD<Membre, Long> {
 
    // public List<Membre> findBySectionCode(String codeSection);
 
-    public List<Membre> findAll(String codeFonction);
+    public List<Membre> findAll(String codeDahira);
 
 }

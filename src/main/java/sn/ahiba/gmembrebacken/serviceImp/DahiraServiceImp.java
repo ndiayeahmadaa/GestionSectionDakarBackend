@@ -52,4 +52,19 @@ public class DahiraServiceImp implements IDahiraService {
     public Optional<Dahira> getByCode(String code) {
         return dahiraRepository.findByCode(code);
     }
+
+
+    @Override
+    public List<Dahira> findBySectionCode(String codeSection) {
+        return null;
+    }
+
+    @Override
+    public List<Dahira> findAll(String codeSection) {
+        if (codeSection != null) {
+            return dahiraRepository.findBySectionCode(codeSection);
+        } else {
+            return dahiraRepository.findAll();
+        }
+    }
 }

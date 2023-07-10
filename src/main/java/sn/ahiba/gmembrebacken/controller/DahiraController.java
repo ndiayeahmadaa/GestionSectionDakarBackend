@@ -17,8 +17,9 @@ public class DahiraController {
     private IDahiraService iDahiraService;
 
     @GetMapping()
-    public ResponseEntity<?> findAll(@RequestParam(value = "code", required = false) String code) {
-        return ResponseEntity.ok().body(iDahiraService.findAll());
+    public ResponseEntity<?> findAll(@RequestParam(value = "code", required = false) String code,
+                                     @RequestParam(value = "codeSection",  required = false) String codeSection) {
+        return ResponseEntity.ok().body(iDahiraService.findAll(codeSection));
     }
     @PostMapping()
     public ResponseEntity<?> create(@RequestBody Dahira dahira) {

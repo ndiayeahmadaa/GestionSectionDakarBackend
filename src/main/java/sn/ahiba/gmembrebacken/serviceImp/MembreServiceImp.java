@@ -30,9 +30,9 @@ public class MembreServiceImp implements IMembreService {
     //}
 
     @Override
-    public List<Membre> findAll(String codeFonction) {
-         if (codeFonction != null) {
-            return membreRepository.findByFonctionCode(codeFonction);
+    public List<Membre> findAll(String codeDahira) {
+         if (codeDahira != null) {
+            return membreRepository.findByDahiraCode(codeDahira);
         } else {
             return membreRepository.findAll();
         }

@@ -19,10 +19,7 @@ public class MembreServiceImp implements IMembreService {
         return membreRepository.findByDahiraCode(codeDahira);
     }
 
-    @Override
-    public List<Membre> findByFonctionCode(String codeFonction) {
-        return membreRepository.findByFonctionCode(codeFonction);
-    }
+
 
     //@Override
     //public List<Membre> findBySectionCode(String codeSection) {
@@ -30,13 +27,18 @@ public class MembreServiceImp implements IMembreService {
     //}
 
     @Override
-    public List<Membre> findAll(String codeDahira) {
+    public List<Membre> findAll(String codeDahira, String codeFonction) {
          if (codeDahira != null) {
             return membreRepository.findByDahiraCode(codeDahira);
-        } else {
+        }
+        else if (codeFonction != null) {
+            return membreRepository.findByFonctionCode(codeFonction);
+        }
+         else {
             return membreRepository.findAll();
         }
     }
+
 
     @Override
     public Optional<?> save(Membre membre) {
@@ -73,6 +75,8 @@ public class MembreServiceImp implements IMembreService {
 
     @Override
     public List<?> findAll() {
-        return membreRepository.findAll();
+        return null;
     }
+
+
 }

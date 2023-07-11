@@ -30,8 +30,9 @@ public class MembreController {
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) })
     @GetMapping()
     public ResponseEntity<?> findAll(@RequestParam(value = "matricule", required = false) String matricule,
+                                     @RequestParam(value = "codeFonction",  required = false) String codeFonction,
                                      @RequestParam(value = "codeDahira",  required = false) String codeDahira) {
-        return ResponseEntity.ok().body(imembreService.findAll(codeDahira));
+        return ResponseEntity.ok().body(imembreService.findAll(codeDahira,codeFonction));
     }
 
     @PostMapping()

@@ -51,9 +51,4 @@ public class FonctionServiceImpl implements IFonctionService {
     public List<?> findAll() {
         return fonctionRepository.findAll();
     }
-
-    @Override
-    public List<Fonction> findByMembreCode(String codeMembre) {
-        return null;
-    }
 }

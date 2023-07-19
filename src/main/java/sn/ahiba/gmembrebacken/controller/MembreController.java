@@ -13,6 +13,8 @@ import sn.ahiba.gmembrebacken.entities.Membre;
 import sn.ahiba.gmembrebacken.exception.BusinessResourceException;
 import sn.ahiba.gmembrebacken.services.IMembreService;
 
+import java.util.List;
+
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/membres")
@@ -39,6 +41,10 @@ public class MembreController {
     public ResponseEntity<?> create(@RequestBody Membre membre) {
 
         return new ResponseEntity<>(imembreService.save(membre).get(), HttpStatus.CREATED);
+    }
+    @PostMapping("/all")
+    public ResponseEntity<List<Membre>> createAll(@RequestBody List<Membre> membres) {
+        return ResponseEntity.ok().body(imembreService.createAll(membres));
     }
 
     @PutMapping

@@ -8,6 +8,7 @@ import sn.ahiba.gmembrebacken.services.IMembreService;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MembreServiceImp implements IMembreService {
@@ -37,6 +38,12 @@ public class MembreServiceImp implements IMembreService {
          else {
             return membreRepository.findAll();
         }
+    }
+
+    @Override
+    public List<Membre> createAll(List<Membre> membres) {
+
+        return membreRepository.saveAll(membres);
     }
 
 
